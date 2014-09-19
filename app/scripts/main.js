@@ -4,9 +4,7 @@ var $gestures = $(".gestures"),
     $pos = $(".position"),
     $wheel = $(".wheel");
 
-new Leap.Controller({enableGestures: true})
-.connect()
-.on("frame", function(frame){
+Leap.loop({enableGestures: true}, function(frame){
     if (frame.hands[0]) {
         var x = frame.hands[0].palmPosition[0];
         $pos.text(x);
