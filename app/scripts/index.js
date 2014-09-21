@@ -33,3 +33,7 @@ Leap.loop({ enableGestures: true }, function(e){
         leapdog.panBy(e.hands[0].palmPosition[0] > 0 ? 2 : -2);
     }
 });
+
+leapdog.on('spinEnd', function(){
+
+});

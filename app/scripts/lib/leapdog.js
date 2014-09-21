@@ -1,6 +1,7 @@
 Victor = require('victor');
+EventEmitter = require('events').EventEmitter;
 
-class LeapDog {
+class LeapDog extends EventEmitter {
     constructor(el, options) {
         var defaults = {
             els: {
@@ -42,6 +43,9 @@ class LeapDog {
             } else if (this.velocity !== 0) {
                 this.velocity = 0;
                 this.blocked = false;
+                this.emit('spinEnd', {
+                    rotation: this.rotation
+                });
             }
             window.requestAnimationFrame(this.modifierFrame);
         }
@@ -81,6 +85,7 @@ class LeapDog {
     }
 
     pan(coords) {
+        this.emit('pan');
         if (this.blocked) {
             return;
         }
@@ -89,10 +94,12 @@ class LeapDog {
     }
 
     panBy(offset) {
+        this.emit('panBy');
         this.rotate(this.rotation + offset);
     }
 
     spin(velocity, blocking) {
+        this.emit('spin');
         if (this.blocked) {
             return;
         }
