@@ -20,6 +20,7 @@ class LeapDog {
         this.rotation = 0;
         this.velocity = 0;
         this.changed = false;
+        this.blocked = false;
 
         this.spinEl = this.el.querySelectorAll(this.options.els.spin)[0];
 
@@ -37,9 +38,10 @@ class LeapDog {
         this.modifierFrame = (timeStamp) => {
             if (Math.abs(this.velocity) > 0.1) {
                 this.decelerate(this.getDrag(this.velocity));
-                console.log(this.velocity);
-                console.log(this.options.speed);
                 this.rotateBy(this.velocity * this.options.speed);
+            } else if (this.velocity !== 0) {
+                this.velocity = 0;
+                this.blocked = false;
             }
             window.requestAnimationFrame(this.modifierFrame);
         }
@@ -79,12 +81,23 @@ class LeapDog {
     }
 
     pan(coords) {
+        if (this.blocked) {
+            return;
+        }
         var vec = Victor.fromObject(coords).subtract(this.vectorOrigin);
         this.rotate(vec.angleDeg());
     }
 
-    spin(velocity) {
+    panBy(offset) {
+        this.rotate(this.rotation + offset);
+    }
+
+    spin(velocity, blocking) {
+        if (this.blocked) {
+            return;
+        }
         this.setVelocity(velocity*-1);
+        this.blocked = this.blocking || false;
     }
 
     rotate(deg) {
