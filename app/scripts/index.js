@@ -28,7 +28,7 @@ Leap.loop({ enableGestures: true }, function(e){
 
     if (gestures.length > 0) {
         var gesture = gestures[gestures.length - 1];
-        leapdog.spin(gesture.speed * Math.abs(gesture.direction[0])/gesture.direction[0]*-1, true);
+        leapdog.spin(gesture.speed * Math.abs(gesture.direction[0])/gesture.direction[0], true);
     } else {
         leapdog.panBy(e.hands[0].palmPosition[0] > 0 ? 2 : -2);
     }
