@@ -1,7 +1,13 @@
 {
   "name": "leap",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "jquery": "^2.1.1",
+    "leapjs": "^0.6.2",
+    "hammerjs": "^2.0.3",
+    "victor": "^0.2.3",
+    "object-assign": "^1.0.0"
+  },
   "devDependencies": {
     "connect": "^2.14.4",
     "connect-livereload": "^0.4.0",
@@ -22,7 +28,13 @@
     "gulp-useref": "^0.4.2",
     "jshint-stylish": "^0.2.0",
     "opn": "^0.1.1",
-    "wiredep": "^1.4.3"
+    "wiredep": "^1.4.3",
+    "gulp-browserify": "^0.5.0",
+    "debowerify": "^0.8.1",
+    "gulp-less": "^1.3.6",
+    "gulp-sweetjs": "^0.5.2",
+    "sweet.js": "^0.7.1",
+    "es6-macros": "0.0.7"
   },
   "engines": {
     "node": ">=0.10.0"

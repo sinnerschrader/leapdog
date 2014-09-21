@@ -1,42 +1,26 @@
 <!doctype html>
 <html class="no-js">
-    <head>
-        <meta charset="utf-8">
-        <title>leap</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+<head>
+    <meta charset="utf-8">
+    <title>leap</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="fryingpan js_fryingpan">
+    <figure class="leapdog js_leapdog">
+        <div class="dogfinder">
+            <div class="needles js_needle">
+                <div class="anchor"></div>
+            </div>
+        </div>
+        <figcaption class="dogs js_dogs">
+           <!-- <ul class="doglist">
+                <li>...</li>
+            </ul> -->
+        </figcaption>
+    </figure>
 
-        <!-- build:css styles/vendor.css -->
-        <!-- bower:css -->
-        <!-- endbower -->
-        <!-- endbuild -->
-
-        <!-- build:css styles/main.css -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- endbuild -->
-
-    </head>
-    <body>
-        <img src="http://upload.wikimedia.org/wikipedia/commons/3/34/Steering_wheel_ship_1.png" alt="" class="wheel">
-        
-        <p class="position"></p>
-        <p class="gestures"></p>
-
-        <!--[if lt IE 10]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <script src="bower_components/jquery/dist/jquery.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
-
-        <script src="//js.leapmotion.com/leap-0.6.2.js"></script>
-
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
+    <script src="index.js"></script>
 </body>
 </html>
