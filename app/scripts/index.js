@@ -10,7 +10,12 @@ var hammer = new Hammer(document.querySelectorAll('.js_fryingpan')[0]);
 var leapdog = new LeapDog(document.querySelectorAll('.js_leapdog')[0]);
 
 hammer.on('pan', function(e){
-    leapdog.pan(e.center);
+    var absAngle = Math.abs(e.angle);
+    if (absAngle > 70 && absAngle < 110) {
+        leapdog.tilt(e.deltaY*-1/window.innerHeight*90);
+    } else {
+        leapdog.pan(e.center);
+    }
 });
 
 hammer.on('swipe', function(e){

@@ -5,7 +5,8 @@ class LeapDog extends EventEmitter {
     constructor(el, options) {
         var defaults = {
             els: {
-                spin: '.js_needle'
+                spin: '.js_spin',
+                tilt: '.js_tilt'
             },
             drag: 0.1,
             speed: 25,
@@ -19,18 +20,21 @@ class LeapDog extends EventEmitter {
 
         this.el = el;
         this.rotation = 0;
+        this.tiltDeg = 0;
         this.velocity = 0;
         this.changed = false;
         this.blocked = false;
 
-        this.spinEl = this.el.querySelectorAll(this.options.els.spin)[0];
+        this.spinEl = this.el.querySelectorAll(this.options.els.spin)[0] || this.el;
+        this.tiltEl = this.el.querySelectorAll(this.options.els.tilt)[0] || this.el;
 
         this.center = this.getCenter();
         this.vectorOrigin = Victor.fromObject(this.center);
 
         this.animationFrame = (timeStamp) => {
-            if (this.spinEl && this.changed) {
+            if (this.changed) {
                 this.spinEl.style.transform = 'rotateZ('+this.rotation+'deg)';
+                this.tiltEl.style.transform = 'rotateX('+this.tiltDeg+'deg)';
                 this.changed = false;
             }
             window.requestAnimationFrame(this.animationFrame);
@@ -114,6 +118,11 @@ class LeapDog extends EventEmitter {
 
     rotateBy(deg) {
         this.rotate(this.rotation + deg);
+    }
+
+    tilt(deg) {
+        this.changed = true;
+        this.tiltDeg = deg;
     }
 }
 
