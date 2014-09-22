@@ -29,6 +29,7 @@ figure {
 
 .leapdog {
     .dogfinder {
+        position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -36,6 +37,52 @@ figure {
         height: 30vw;
         border: 1px solid currentcolor;
         border-radius: 50%;
+    }
+    .face{
+        position: absolute;
+        top: .75vw;
+        height: 100%;
+        width: 3vw;
+        text-align: center;
+        font-size: 2vw;
+        font-weight: 100;
+        .direction{
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            transform-origin: 50% 50%;
+            .label{
+                display: block;
+            }
+            &::after{
+                display: block;
+                content: '';
+                width: 1px;
+                height: 1.5vw;
+                margin: 0 auto;
+                background: #fff;
+            }
+        }
+        .east{
+            transform: rotate(90deg) translate3d(-20%, 2%, 0);
+            .label{
+                transform: rotate(-90deg);
+            }
+        }
+        .south{
+            transform: rotate(180deg) translate3d(0,4%,0);
+            .label{
+                transform: rotate(-180deg);
+            }
+        }
+        .west{
+            transform: rotate(270deg) translate3d(20%,2%,0);
+            .label{
+                transform: rotate(-270deg);
+            }
+        }
     }
     .needles {
         position: relative;
@@ -65,11 +112,11 @@ figure {
         &::before{
             top: 0;
             right: 0;
-            bottom: 49%;
+            bottom: 50%;
             left: 0;
         }
         &::after{
-            top: 49%;
+            top: 50%;
             right: -2.5%; // who knows?
             left: 0;
             bottom: 0;
