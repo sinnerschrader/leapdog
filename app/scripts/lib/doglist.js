@@ -25,24 +25,15 @@ class DogList{
     }
 
     getElementByItem(item) {
-        if (! item ) {
-            return;
-        };
         return this.getElementById(item.id);
     }
 
     getElementById(id) {
-        if (! id ) {
-            return;
-        }
         return this.el.querySelectorAll('#' + id)[0];
     }
 
     select(rotation) {
         var selectedElement = this.getElementByRotation(rotation);
-        if (! selectedElement) {
-            return;
-        }
         selectedElement.classList.add('selected');
     }
 

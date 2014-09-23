@@ -54,7 +54,7 @@ var run = function() {
     leapdog.on('spin', dogs.resetSelection);
 
     leapdog.on('spinEnd', function(e){
-        dogs.select(e.rotation > 360 ? Math.abs(e.rotation % 360) : Math.abs(e.rotation));
+        dogs.select(Math.abs(e.rotation) > 360 ? Math.abs(e.rotation % 360) : Math.abs(e.rotation));
     });
 };
 

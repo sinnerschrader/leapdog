@@ -9,15 +9,20 @@ module.exports = function(item, index, items) {
         return typeof sentence !== 'undefined';
     });
 
+    var arc = 360/(items.length);
+    var center = arc*index;
+    var max = center + arc/2;
+    var min = center - arc/2;
+
     return Object.assign({}, item, {
         id: 'item-' + index,
         name: splitName[0].trim(),
         title: splitName[1].split('(')[0].trim(),
         description: description,
         rotation: {
-            center: 360/items.length*index,
-            max: 360/items.length*index + 360/items.length/2,
-            min: 360/items.length*index - 360/items.length/2
+            center: center,
+            max: max,
+            min: min
         },
         image: {
             src: item.image,
