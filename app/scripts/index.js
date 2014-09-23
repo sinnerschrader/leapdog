@@ -63,7 +63,7 @@ var run = function() {
             leapdog.spin(gesture.speed * Math.abs(gesture.direction[0])/gesture.direction[0], true);
         } else {
             dogs.blurSelected();
-            leapdog.panBy(e.hands[0].palmPosition[0] > 0 ? 2 : -2);
+            leapdog.panBy(-e.hands[0].palmVelocity[0]/100);
         }
     });
 
