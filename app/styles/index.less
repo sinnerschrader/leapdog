@@ -22,6 +22,7 @@ figure {
 ul,
 ol{
     list-style: none;
+    margin: 0;
     padding: 0;
 }
 
@@ -144,6 +145,7 @@ ol{
     }
     .dog{
         position: absolute;
+        width: 3.5vh;
         height: 85%;
         top: 7vh;
         transition: .3s all ease-in-out;
@@ -161,10 +163,6 @@ ol{
             }
             .image{
                 filter: none;
-                opacity: 1;
-            }
-            .infocontainer{
-                background: #fff;
                 opacity: 1;
             }
         }
@@ -190,12 +188,18 @@ ol{
             top: 0;
             left: 0;
             z-index: 1;
+            height: 20vw;
             width: 32vw;
             padding: 16vw 15px 15px 15px;
             opacity: 0;
             transition: .3s all ease-in-out;
             color: #999;
             transform: translate3d(-44%, -10vw, 0);
+            overflow: hidden;
+            &.show{
+                background: #fff;
+                opacity: 1;
+            }
         }
         .image{
             width: 100%;

@@ -5,6 +5,32 @@ class DogList{
         this.data = data;
         this.template = Handlebars.compile(document.querySelectorAll(options.itemTemplate)[0].text);
         this.el = document.querySelectorAll(options.el)[0];
+        this.el.addEventListener('webkitTransitionEnd', this.onTransitionEnd, false);
+    }
+
+    onTransitionEnd(e) {
+        initialClass = {
+            in: 'selected',
+            out: 'show'
+        };
+        initalProperty = {
+            in: 'top',
+            out: 'height'
+        };
+
+        if (e.target.classList.contains(initialClass.in) && e.propertyName === initalProperty.in) {
+            var infocontainer = e.target.querySelectorAll('.infocontainer')[0];
+            infocontainer.classList.add(initialClass.out);
+            var height = infocontainer.offsetHeight;
+            Array.prototype.forEach.call(infocontainer.children, function(child){
+                height += child.offsetHeight;
+            });
+            infocontainer.style.height = height + 75 + 'px'; // meh
+        } else if (e.propertyName === initalProperty.out && e.target.classList.contains('infocontainer') && ! e.target.style.height) {
+            e.target.classList.remove(initialClass.out);
+        } else if (e.propertyName === 'opacity' && e.target.classList.contains('infocontainer') && ! e.target.classList.contains(initialClass.out)) {
+            e.target.parentNode.parentNode.classList.remove(initialClass.in);
+        }
     }
 
     render() {
@@ -39,7 +65,7 @@ class DogList{
 
     resetSelection() {
         Array.prototype.forEach.call(this.el.querySelectorAll('.selected'), function(element){
-            element.classList.remove('selected');
+            element.querySelectorAll('.infocontainer')[0].style.height = '';
         });
     }
 };
