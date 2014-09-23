@@ -58,9 +58,21 @@ class DogList{
         return this.el.querySelectorAll('#' + id)[0];
     }
 
+    getSelectedElement() {
+        return this.el.querySelectorAll('.selected')[0];
+    }
+
     select(rotation) {
         var selectedElement = this.getElementByRotation(rotation);
         selectedElement.classList.add('selected');
+    }
+
+    blurSelected() {
+        if (this.getSelectedElement()) this.getSelectedElement().classList.add("blur");
+    }
+
+    focusSelected() {
+        if (this.getSelectedElement()) this.getSelectedElement().classList.remove("blur");
     }
 
     resetSelection() {

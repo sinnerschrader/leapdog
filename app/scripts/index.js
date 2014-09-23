@@ -19,6 +19,8 @@ var run = function() {
         itemTemplate: '.tpl_dog'
     });
 
+    var isPanning = false;
+
     dogs.render();
 
     hammer.on('pan', function(e){
@@ -30,12 +32,25 @@ var run = function() {
         }
     });
 
+    hammer.on('panstart', function() {
+        dogs.blurSelected();
+        isPanning = true;
+    });
+
+    hammer.on('panend', function() {
+        dogs.focusSelected();
+        isPanning = false;
+    });
+
     hammer.on('swipe', function(e){
         leapdog.spin(e.velocity);
     });
 
     Leap.loop({ enableGestures: true }, function(e){
         if (e.hands.length === 0) {
+            if (!isPanning) {
+                dogs.focusSelected();
+            }
             return;
         }
 
@@ -47,6 +62,7 @@ var run = function() {
             var gesture = gestures[gestures.length - 1];
             leapdog.spin(gesture.speed * Math.abs(gesture.direction[0])/gesture.direction[0], true);
         } else {
+            dogs.blurSelected();
             leapdog.panBy(e.hands[0].palmPosition[0] > 0 ? 2 : -2);
         }
     });
