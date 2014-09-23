@@ -8,7 +8,8 @@
     "victor": "^0.2.3",
     "object-assign": "^1.0.0",
     "handlebars": "^2.0.0",
-    "node-uuid": "^1.4.1"
+    "node-uuid": "^1.4.1",
+    "node-static": "^0.7.5"
   },
   "devDependencies": {
     "connect": "^2.14.4",
@@ -40,5 +41,9 @@
   },
   "engines": {
     "node": ">=0.10.0"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "gulp"
   }
 }
