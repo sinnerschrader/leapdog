@@ -60,10 +60,10 @@ var run = function() {
 
         if (gestures.length > 0) {
             var gesture = gestures[gestures.length - 1];
-            leapdog.spin(gesture.speed * Math.abs(gesture.direction[0])/gesture.direction[0], true);
+            leapdog.spin(gesture.speed * Math.abs(gesture.direction[0])/-1*gesture.direction[0], true);
         } else {
             dogs.blurSelected();
-            leapdog.panBy(-e.hands[0].palmVelocity[0]/100);
+            leapdog.panBy(e.hands[0].palmVelocity[0]/100);
         }
     });
 
