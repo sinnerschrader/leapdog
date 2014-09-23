@@ -70,7 +70,9 @@ var run = function() {
     leapdog.on('spin', dogs.resetSelection);
 
     leapdog.on('spinEnd', function(e){
-        dogs.select(Math.abs(e.rotation) > 360 ? Math.abs(e.rotation % 360) : Math.abs(e.rotation));
+        // spin under 360deg will break here (but dosen't occure at the moment)
+        var deg = e.rotation % 360;
+        dogs.select(deg < 0 ? Math.abs(360 + deg) : Math.abs(deg));
     });
 };
 
