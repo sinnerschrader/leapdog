@@ -9,7 +9,8 @@
     "object-assign": "^1.0.0",
     "handlebars": "^2.0.0",
     "node-uuid": "^1.4.1",
-    "node-static": "^0.7.5"
+    "node-static": "^0.7.5",
+    "gulp": "^3.8.8"
   },
   "devDependencies": {
     "connect": "^2.14.4",
@@ -44,6 +45,8 @@
   },
   "scripts": {
     "start": "node server.js",
-    "build": "gulp"
+    "prestart": "npm run build",
+    "build": "node_modules/.bin/gulp",
+    "watch": "npm run build && node_modules/.bin/gulp watch"
   }
 }
