@@ -19,6 +19,12 @@ figure {
     margin: 0;
 }
 
+ul,
+ol{
+    list-style: none;
+    padding: 0;
+}
+
 .fryingpan {
     display: flex;
     align-items: center;
@@ -121,6 +127,82 @@ figure {
             left: 0;
             bottom: 0;
             transform: rotate(180deg);
+        }
+    }
+    .dogs{
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        display: flex;
+        justify-content: center;
+    }
+    .doglist{
+        width: 3.5vh;
+        height: 50%;
+    }
+    .dog{
+        position: absolute;
+        height: 85%;
+        top: 7vh;
+        transition: .3s all ease-in-out;
+        &.selected{
+            top: -15vh;
+            z-index: 3;
+            .contentcontainer{
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            .imagecontainer{
+                height: 15vw;
+                width: 15vw;
+                transform: translate3d(-35%, -50%, 0);
+            }
+            .image{
+                filter: none;
+                opacity: 1;
+            }
+            .infocontainer{
+                background: #fff;
+                opacity: 1;
+            }
+        }
+        .contentcontainer{
+            position: absolute;
+            top: 0;
+            width: 3.5vh;
+            height: 3.5vh;
+            transition: .3s all ease-in-out;
+        }
+        .imagecontainer{
+            position: relative;
+            z-index: 2;
+            width: 3.5vh;
+            height: 3.5vh;
+            overflow: hidden;
+            border-radius: 50%;
+            background: rgba(255,255,255,.1);
+            transition: .3s all ease-in-out;
+        }
+        .infocontainer{
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            width: 32vw;
+            padding: 16vw 15px 15px 15px;
+            opacity: 0;
+            transition: .3s all ease-in-out;
+            color: #999;
+            transform: translate3d(-44%, -10vw, 0);
+        }
+        .image{
+            width: 100%;
+            height: auto;
+            opacity: .3;
+            filter: grayscale(1);
+            transition: .3s all ease-in-out;
         }
     }
 }

@@ -9,7 +9,7 @@
 </head>
 <body class="fryingpan js_fryingpan">
     <figure class="leapdog js_leapdog">
-        <div class="dogfinder">
+        <div class="dogfinder js_tilt">
             <div class="face">
                 <div class="direction north">
                     <span class="label">N</span>
@@ -29,12 +29,29 @@
             </div>
         </div>
         <figcaption class="dogs js_dogs">
-           <!-- <ul class="doglist">
-                <li>...</li>
-            </ul> -->
+           <ul class="doglist js_doglist"></ul>
         </figcaption>
     </figure>
-
     <script src="index.js"></script>
+    <script class="tpl_dog" type="text/template">
+        <li id="{{id}}" class="dog" style="transform: rotateZ({{rotation.center}}deg)">
+            <div class="contentcontainer" style="transform: rotateZ(-{{rotation.center}}deg)">
+                <div class="imagecontainer">
+                    <img src="{{image.src}}" alt="{{name}}" width="{{image.width}}" height="{{image.height}}" class="image" />
+                </div>
+                <div class="infocontainer">
+                    <h3 class="h h3">{{name}}</h3>
+                    <h4 class="h h4">{{title}}</h4>
+                    <ul class="description">
+                        {{#each description}}
+                        <li>
+                            {{this}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </script>
 </body>
 </html>
