@@ -11,3 +11,4 @@ Fancy web application employing a nautical theme
 
 ### Development
 * `gulp watch`
+* Development server runs on port 9000
