@@ -6,22 +6,24 @@ var Hammer = require('hammerjs'),
     Leap = require('leapjs'),
     normalize = require('./lib/normalize'),
     DogList = require('./lib/doglist'),
-    LeapDog = require('./lib/leapdog');
+    LeapDog = require('./lib/leapdog'),
+    Idler = require('./lib/idler');
 
 var dogData = require('../data/dogs.json').map(normalize);
 
-var run = function() {
-    var hammer = new Hammer(document.querySelectorAll('.js_fryingpan')[0]);
-    var leapdog = new LeapDog(document.querySelectorAll('.js_leapdog')[0]);
-
+var renderDogList = function() {
     var dogs = new DogList(dogData, {
         el: '.js_doglist',
         itemTemplate: '.tpl_dog'
     });
 
-    var isPanning = false;
-
     dogs.render();
+    return dogs;
+};
+
+var bindInterface = function(leapdog, dogs) {
+    var hammer = new Hammer(document.querySelectorAll('.js_fryingpan')[0]);
+    var isPanning = false;
 
     hammer.on('pan', function(e){
         var absAngle = Math.abs(e.angle);
@@ -43,6 +45,7 @@ var run = function() {
     });
 
     hammer.on('swipe', function(e){
+        console.log(e.velocity);
         leapdog.spin(e.velocity);
     });
 
@@ -66,10 +69,33 @@ var run = function() {
             leapdog.panBy(e.hands[0].palmVelocity[0]/100);
         }
     });
+};
 
-    leapdog.on('spin', dogs.resetSelection);
+var run = function() {
+    var leapdog = new LeapDog(document.querySelectorAll('.js_leapdog')[0]);
+
+    var dogs = renderDogList();
+    bindInterface(leapdog, dogs);
+
+    var idler = new Idler();
+
+    idler.on('idle', function(){
+        var direction = Math.random >= 0.5 ? 1 : -1;
+        leapdog.spin((Math.random() * 10 + 1) * direction);
+    });
+
+    leapdog.on('pan', function(){
+        idler.set(false);
+    });
+
+    leapdog.on('spin', function(){
+        idler.set(false);
+        idler.pause();
+        dogs.resetSelection();
+    });
 
     leapdog.on('spinEnd', function(e){
+        idler.resume();
         // spin under 360deg will break here (but dosen't occure at the moment)
         var deg = e.rotation % 360;
         dogs.select(deg < 0 ? Math.abs(360 + deg) : Math.abs(deg));
