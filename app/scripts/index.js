@@ -71,6 +71,13 @@ var bindInterface = function(leapdog, dogs) {
     });
 };
 
+var getRandomVelocity = function(min, max) {
+    min = min || 0.1;
+    max = max || 5;
+    var direction = Math.random() >= 0.5 ? 1 : -1;
+    return (Math.random() * max + min) * direction;
+};
+
 var run = function() {
     var leapdog = new LeapDog(document.querySelectorAll('.js_leapdog')[0]);
 
@@ -80,8 +87,7 @@ var run = function() {
     var idler = new Idler();
 
     idler.on('idle', function(){
-        var direction = Math.random >= 0.5 ? 1 : -1;
-        leapdog.spin((Math.random() * 10 + 1) * direction);
+        leapdog.spin(getRandomVelocity());
     });
 
     leapdog.on('pan', function(){
