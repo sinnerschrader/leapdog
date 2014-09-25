@@ -45,7 +45,6 @@ var bindInterface = function(leapdog, dogs) {
     });
 
     hammer.on('swipe', function(e){
-        console.log(e.velocity);
         leapdog.spin(e.velocity);
     });
 
