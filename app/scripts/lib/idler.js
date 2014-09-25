@@ -3,7 +3,7 @@ EventEmitter = require('events').EventEmitter;
 class Idler extends EventEmitter {
     constructor(options) {
         var defaults = {
-            timeout: 5000,
+            timeout: 20 * 1000,
             inital: false
         };
 
