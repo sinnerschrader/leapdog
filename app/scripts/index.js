@@ -9,7 +9,7 @@ var Hammer = require('hammerjs'),
     LeapDog = require('./lib/leapdog'),
     Idler = require('./lib/idler');
 
-var dogData = require('../data/dogs.json').map(normalize);
+var dogData = require('../data/dogs_new.json').map(normalize);
 
 var renderDogList = function() {
     var dogs = new DogList(dogData, {
