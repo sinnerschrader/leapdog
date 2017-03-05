@@ -1,4 +1,6 @@
 # Leapdog
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/sinnerschrader/leapdog.svg)](https://greenkeeper.io/)
 Fancy web application employing a nautical theme
 
 
